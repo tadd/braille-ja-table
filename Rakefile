@@ -24,7 +24,7 @@ def json(h)
 end
 
 SOURCE_TABLE = IO.foreach(SOURCE.first).inject({}) do |acc, line|
-  *list = line.chomp.split
+  *list = line.chomp.split("\t")
   if list.size == 2
     ja, br_escaped = *list
     acc.merge!(ja => br_escaped.scan(/.{6}/).map{|s| unescape(s)}.join)

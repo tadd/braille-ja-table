@@ -33,24 +33,24 @@ SOURCE_TABLE = IO.foreach(SOURCE.first).inject({}) do |acc, line|
   end
 end
 
-desc 'create raw tsv'
+desc 'create raw TSV'
 file "#{PREFIX}-raw.tsv" => SOURCE do |target|
   tsv = SOURCE_TABLE.map {|pair| pair.join("\t")}.join("\n")
   IO.write(target.name, tsv << "\n")
 end
 
-desc 'create escaped tsv'
+desc 'create escaped TSV'
 file "#{PREFIX}-escaped.tsv" => SOURCE do |target|
   tsv = SOURCE_TABLE.map {|pair| pair.map{|s| escape(s)}.join("\t")}.join("\n")
   IO.write(target.name, tsv << "\n")
 end
 
-desc 'create raw json'
+desc 'create raw JSON'
 file "#{PREFIX}-raw.json" => SOURCE do |target|
   IO.write(target.name, json(SOURCE_TABLE))
 end
 
-desc 'create escaped json'
+desc 'create escaped JSON'
 file "#{PREFIX}-escaped.json" => SOURCE do |target|
   table = SOURCE_TABLE.inject({}) do |acc, pair|
     e = pair.map{|s| escape(s)}

@@ -12,6 +12,10 @@ task tsv: %w[raw escaped].map{|suffix| "#{PREFIX}-#{suffix}.tsv"}
 task json: %w[raw escaped].map{|suffix| "#{PREFIX}-#{suffix}.json"}
 
 def escape(s)
+  s.ascii_only? ? s : escape_multibyte(s)
+end
+
+def escape_multibyte(s)
   s.unpack('U*').map{|n| '\u' + n.to_s(16)}.join
 end
 

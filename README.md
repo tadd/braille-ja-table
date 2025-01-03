@@ -10,7 +10,7 @@ Japanese Braille Table
 単純な一覧表のため、著作権は発生しない可能性も大きいと考えています。しかし
 それが発生した場合、確かに無効とするために[CC0ライセン
 ス](https://creativecommons.org/public-domain/cc0/)を適用します。
-同梱のファイル[LICENSE](./LICENSE)をご覧ください。
+同梱のファイル[LICENSE.md](./LICENSE.md)をご覧ください。
 
 ## 現状の制限
 

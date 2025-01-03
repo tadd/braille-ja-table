@@ -20,33 +20,32 @@ SOURCE_TABLE = File.foreach(SOURCE_TSV).inject({}) do |acc, line|
   if list.size == 2
     ja, br_escaped = *list
     acc.merge!(ja => br_escaped.scan(/.{6}/).map{|s| unescape(s)}.join)
-  else
-    acc
   end
+  acc
 end
 
 desc 'create raw TSV'
 file "#{PREFIX}-raw.tsv" => SOURCES do |target|
   tsv = SOURCE_TABLE.map {|pair| pair.join("\t")}.join("\n")
-  IO.write(target.name, tsv << "\n")
+  File.write(target.name, tsv << "\n")
 end
 
 desc 'create escaped TSV'
 file "#{PREFIX}-escaped.tsv" => SOURCES do |target|
   tsv = SOURCE_TABLE.map {|pair| pair.map{|s| escape(s)}.join("\t")}.join("\n")
-  IO.write(target.name, tsv << "\n")
+  File.write(target.name, tsv << "\n")
 end
 
 desc 'create raw JSON'
 file "#{PREFIX}-raw.json" => SOURCES do |target|
-  IO.write(target.name, json(SOURCE_TABLE))
+  File.write(target.name, json(SOURCE_TABLE))
 end
 
 desc 'create escaped JSON'
 file "#{PREFIX}-escaped.json" => SOURCES do |target|
   table = SOURCE_TABLE.inject({}) do |acc, pair|
     e = pair.map{|s| escape(s)}
-    acc.merge!(e[0] => e[1])
+    acc.merge!([e].to_h)
   end
-  IO.write(target.name, json(table).gsub('\\' * 2, '\\'))
+  File.write(target.name, json(table).gsub('\\' * 2, '\\'))
 end

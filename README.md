@@ -18,24 +18,26 @@ Japanese Braille Table
 ## ファイルの構成
 
 以下の4つのファイルから構成されています。全ては実質的に同じ物で、いづれも
-一つのファイルbraille-ja-table-source.tsvから生成されています。詳しくは
-Rakefileをご覧ください。
+一つのファイル `source.tsv` から生成されています。詳しくは `Rakefile`
+をご覧ください。
 
-* braille-ja-table-raw.tsv
-    * TSVファイルです。生のUTF-8で記述された「日本語ひらがな」と「点字」が
-	一行に入っています。
-* braille-ja-table-escaped.tsv
-    * TSVファイルです。ASCIIによるUnicodeエスケープで記述された
-	「日本語ひらがな」と「点字」が一行に入っています。
-* braille-ja-table-raw.json
-    * JSONファイルです。生のUTF-8で記述された「日本語ひらがな」がキーになり、
-	「点字」がその値になっています。
-* braille-ja-table-escaped.json
-    * JSONファイルです。ASCIIによるUnicodeエスケープで記述された
-	「日本語ひらがな」がキーになり、「点字」がその値になっています。
+* braille-ja-table-**raw.tsv**
+    * TSVファイルです。
+    * 生のUTF-8で記述された「日本語ひらがな」と「点字」が一行に入っています。
+* braille-ja-table-**escaped.tsv**
+    * TSVファイルです。
+    * ASCIIによるUnicodeエスケープで記述された「日本語ひらがな」と「点字」が一行に入ってい
+      ます。
+* braille-ja-table-**raw.json**
+    * JSONファイルです。
+    * 生のUTF-8で記述された「日本語ひらがな」がキーになり、「点字」がその値になっています。
+* braille-ja-table-**escaped.json**
+    * JSONファイルです。
+    * ASCIIによるUnicodeエスケープで記述された「日本語ひらがな」がキーになり、「点字」がそ
+      の値になっています。
+
 
 ## ファイルの生成法
 
-ソースであるbraille-ja-table-source.tsvを編集した後、単純に `rake` を
-実行します。これで4つのファイルが自動的に生成されます。成果物を一旦削除したい
-場合は `rake clobber` を実行してください。
+`source.tsv` を編集した後、単純に `rake` を 実行します。これで4つのファイルが自動的に
+生成されます。成果物を一旦削除したい場合は `rake clobber` を実行してください。
